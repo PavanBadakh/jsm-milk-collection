@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JSM Milk Collection</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>JSM Milk Collection</h1>
+
+    <input type="text" id="farmerNo" placeholder="Farmer Number"
+onkeypress="if(event.key==='Enter') searchFarmer()">
+
+    <button onclick="searchFarmer()">
+        Search
+    </button>
+
+    <div id="result"></div>
+
+    <script type="module" src="app.js"></script>
+</body>
+</html>
