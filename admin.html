@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>JSM Admin Panel</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <script>
@@ -13,8 +14,11 @@ if (pass !== "jsm123") {
 </script>
 <h1>JSM Milk Collection - Admin</h1>
 
-<input type="text" id="farmerNo" placeholder="Farmer No">
-<br><br>
+<input
+type="text"
+id="farmerNo"
+placeholder="Farmer No"
+onchange="getFarmerName()">
 
 <input type="text" id="name" placeholder="Name">
 <br><br>
@@ -44,7 +48,12 @@ if (pass !== "jsm123") {
 <button onclick="saveFarmer()">
 Save
 </button>
-
+<button onclick="loadRecord()">
+Load Record
+</button>
+<button onclick="deleteRecord()">
+Delete Record
+</button>
 <p id="msg"></p>
 
 <script type="module" src="admin.js"></script>
