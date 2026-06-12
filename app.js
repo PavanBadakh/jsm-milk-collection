@@ -22,17 +22,27 @@ const db = getFirestore(app);
 
 function showDate(date){
 
+let box =
+document.getElementById("details_" + date);
+
+if(box.innerHTML !== ""){
+
+box.innerHTML = "";
+return;
+
+}
+
 let data = window.groupedData[date];
 
-let html = `<h4>📅 ${date}</h4>`;
+let html = "";
 
 if(data.morning){
 
 html += `
 <p>🌅 Morning</p>
-<p>🥛 ${data.morning.litre}</p>
-<p>🧈 ${data.morning.fat}</p>
-<p>🌡️ ${data.morning.degree}</p>
+<p> Litre :${data.morning.litre}</p>
+<p> Fat: ${data.morning.fat}</p>
+<p> Degree: ${data.morning.degree}</p>
 `;
 }
 
@@ -40,15 +50,17 @@ if(data.evening){
 
 html += `
 <p>🌙 Evening</p>
-<p>🥛 ${data.evening.litre}</p>
-<p>🧈 ${data.evening.fat}</p>
-<p>🌡️ ${data.evening.degree}</p>
+<p> Litre: ${data.evening.litre}</p>
+<p> Fat: ${data.evening.fat}</p>
+<p> Degree: ${data.evening.degree}</p>
 `;
 }
 
-document.getElementById("historyDetails").innerHTML = html;
+box.innerHTML = html;
 
 }
+
+window.showDate = showDate;
 
 window.showDate = showDate;
 async function searchFarmer() {
@@ -110,7 +122,7 @@ let latest = grouped[latestDate];
 html += `
 <div class="latest-card">
 
-<h2>📅 Today</h2>
+<h2> Today</h2>
 <p>${latestDate}</p>
 `;
 
@@ -119,9 +131,9 @@ if(latest.morning){
 html += `
 <h3>🌅 Morning</h3>
 
-<p>🥛 ${latest.morning.litre}</p>
-<p>🧈 ${latest.morning.fat}</p>
-<p>🌡️ ${latest.morning.degree}</p>
+<p> Litre: ${latest.morning.litre}</p>
+<p> Fat: ${latest.morning.fat}</p>
+<p> Degree: ${latest.morning.degree}</p>
 `;
 }
 
@@ -130,9 +142,9 @@ if(latest.evening){
 html += `
 <h3>🌙 Evening</h3>
 
-<p>🥛 ${latest.evening.litre}</p>
-<p>🧈 ${latest.evening.fat}</p>
-<p>🌡️ ${latest.evening.degree}</p>
+<p> Litre :${latest.evening.litre}</p>
+<p> Fat: ${latest.evening.fat}</p>
+<p> Degree: ${latest.evening.degree}</p>
 `;
 }
 
@@ -141,17 +153,23 @@ html += `</div>`;
 html += `
 <h3>📚 History</h3>
 
-<div id="historyDetails"></div>
+
 `;
 
 for(let i=1;i<dates.length;i++){
 
 html += `
-<div class="card"
+<div class="card">
+
+<div
 onclick="showDate('${dates[i]}')"
-style="cursor:pointer;">
+style="cursor:pointer;font-weight:bold;">
 
 ▶ ${dates[i]}
+
+</div>
+
+<div id="details_${dates[i]}"></div>
 
 </div>
 `;
