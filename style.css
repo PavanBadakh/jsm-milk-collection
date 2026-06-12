@@ -6,25 +6,28 @@ body{
 }
 
 h1{
-    color:#2e7d32;
+    color:lch(49.68% 45.32 119.65);
 }
 
 input,select{
-    width:250px;
-    padding:10px;
-    margin:5px;
-    border:1px solid #ccc;
-    border-radius:8px;
+    width:280px;
+    padding:12px;
+    margin:8px;
+    border:2px solid #ddd;
+    border-radius:12px;
+    font-size:16px;
 }
 
 button{
-    background:#2e7d32;
+    background:#2563eb;
     color:white;
     border:none;
-    padding:10px 20px;
-    border-radius:8px;
+    padding:12px 25px;
+    border-radius:12px;
     cursor:pointer;
     margin:5px;
+    font-size:16px;
+    font-weight:bold;
 }
 
 button:hover{
@@ -35,34 +38,37 @@ button:hover{
     margin-top:20px;
 }
 
-.card{
-    .card{
+.latest-card{
     background:white;
-    padding:18px;
-    margin:15px auto;
-    max-width:350px;
-    border-radius:15px;
-    box-shadow:0 4px 12px rgba(0,0,0,0.1);
+    max-width:420px;
+    margin:20px auto;
+    padding:25px;
+    border-radius:20px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.12);
     text-align:left;
-    border-left:6px solid #2e7d32;
+    border-top:6px solid #2563eb;
 }
 
-.card h4{
-    margin-top:0;
+.latest-card h2{
+    text-align:center;
     color:#2e7d32;
 }
 
-.card p{
-    margin:8px 0;
-    font-size:16px;
+.latest-card h3{
+    color:#2e7d32;
+    margin-top:20px;
 }
-.latest-card{
-    background:#2e7d32;
-    color:white;
-    padding:20px;
-    border-radius:15px;
-    margin:15px auto;
-    max-width:350px;
-    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+
+.latest-card p{
+    font-size:18px;
+    margin:10px 0;
 }
+
+.card{
+    background:white;
+    max-width:420px;
+    margin:12px auto;
+    padding:15px;
+    border-radius:12px;
+    box-shadow:0 3px 10px rgba(0,0,0,0.08);
 }

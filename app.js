@@ -81,7 +81,11 @@ async function searchFarmer() {
 
     const data = farmerSnap.data();
 
-let html = `<h3>${data.name}</h3>`;
+let html = `
+<h2 class="farmer-name">
+ ${data.name.toUpperCase()}
+</h2>
+`;
 
 let records = [];
 
@@ -122,7 +126,7 @@ let latest = grouped[latestDate];
 html += `
 <div class="latest-card">
 
-<h2> Today</h2>
+<h2> Latest Entry</h2>
 <p>${latestDate}</p>
 `;
 
