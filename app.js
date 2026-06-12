@@ -19,6 +19,38 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+
+function showDate(date){
+
+let data = window.groupedData[date];
+
+let html = `<h4>📅 ${date}</h4>`;
+
+if(data.morning){
+
+html += `
+<p>🌅 Morning</p>
+<p>🥛 ${data.morning.litre}</p>
+<p>🧈 ${data.morning.fat}</p>
+<p>🌡️ ${data.morning.degree}</p>
+`;
+}
+
+if(data.evening){
+
+html += `
+<p>🌙 Evening</p>
+<p>🥛 ${data.evening.litre}</p>
+<p>🧈 ${data.evening.fat}</p>
+<p>🌡️ ${data.evening.degree}</p>
+`;
+}
+
+document.getElementById("historyDetails").innerHTML = html;
+
+}
+
+window.showDate = showDate;
 async function searchFarmer() {
 
     let farmerNo =
@@ -50,20 +82,80 @@ recordsSnap.forEach((record) => {
 
 records.reverse();
 records = records.slice(0, 10);
-records.forEach((record) => {
-    let r = record.data;
+window.groupedData = {};
+let grouped = {};
 
-    html += `
-    <div class="card">
-        <b>${record.id}</b><br>
-        Litre: ${r.litre}<br>
-        Fat: ${r.fat}<br>
-        Degree: ${r.degree}
-    </div>
-    `;
+records.forEach((record) => {
+
+    let parts = record.id.split("_");
+
+    let date = parts[0];
+    let session = parts[1];
+
+    if (!grouped[date]) {
+        grouped[date] = {};
+    }
+
+    grouped[date][session] = record.data;
 });
 
+console.log(grouped);
+window.groupedData = grouped;
+let dates = Object.keys(grouped);
 
+let latestDate = dates[0];
+
+let latest = grouped[latestDate];
+
+html += `
+<div class="latest-card">
+
+<h2>📅 Today</h2>
+<p>${latestDate}</p>
+`;
+
+if(latest.morning){
+
+html += `
+<h3>🌅 Morning</h3>
+
+<p>🥛 ${latest.morning.litre}</p>
+<p>🧈 ${latest.morning.fat}</p>
+<p>🌡️ ${latest.morning.degree}</p>
+`;
+}
+
+if(latest.evening){
+
+html += `
+<h3>🌙 Evening</h3>
+
+<p>🥛 ${latest.evening.litre}</p>
+<p>🧈 ${latest.evening.fat}</p>
+<p>🌡️ ${latest.evening.degree}</p>
+`;
+}
+
+html += `</div>`;
+
+html += `
+<h3>📚 History</h3>
+
+<div id="historyDetails"></div>
+`;
+
+for(let i=1;i<dates.length;i++){
+
+html += `
+<div class="card"
+onclick="showDate('${dates[i]}')"
+style="cursor:pointer;">
+
+▶ ${dates[i]}
+
+</div>
+`;
+}
 
     document.getElementById("result").innerHTML = html;
     document.getElementById("farmerNo").value = "";
