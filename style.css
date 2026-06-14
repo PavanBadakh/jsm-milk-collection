@@ -1,8 +1,11 @@
 body{
-    font-family: Arial, sans-serif;
+     font-family: 'Poppins', sans-serif;
     background:#f5f5f5;
     padding:20px;
     text-align:center;
+    
+    
+
 }
 
 h1{
@@ -35,7 +38,9 @@ button:hover{
 }
 
 #result{
-    margin-top:20px;
+  
+    margin-top:5px;
+
 }
 
 .latest-card{
@@ -71,4 +76,18 @@ button:hover{
     padding:15px;
     border-radius:12px;
     box-shadow:0 3px 10px rgba(0,0,0,0.08);
+}
+
+
+footer{
+    margin-top:5px;
+    padding:5px;
+    text-align:center;
+    color:#666;
+    font-size:14px;
+    line-height:1.8;
+}
+
+#result{
+    margin-top:10px;
 }

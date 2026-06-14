@@ -180,7 +180,9 @@ style="cursor:pointer;font-weight:bold;">
 }
 
     document.getElementById("result").innerHTML = html;
+    
     document.getElementById("farmerNo").value = "";
+    document.getElementById("footer").style.display = "block";
 }
 
 window.searchFarmer = searchFarmer;

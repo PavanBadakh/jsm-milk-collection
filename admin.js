@@ -45,7 +45,11 @@ async function saveFarmer() {
 alert("Save button works");
 console.log("Function started");
 let farmerNo = document.getElementById("farmerNo").value;
-let date = document.getElementById("date").value;
+
+let date = new Date()
+.toISOString()
+.split("T")[0];
+
 let session = document.getElementById("session").value;
   let name = document.getElementById("name").value;
   
