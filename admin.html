@@ -17,19 +17,26 @@ if (pass !== "jsm123") {
 </script>
 <h1>JSM Milk Collection - Admin</h1>
 
-<input
-type="text"
+<input type="text"
 id="farmerNo"
 placeholder="Farmer No"
-onchange="getFarmerName()">
+onchange="getFarmerName()"
+onkeydown="if(event.key==='Enter') document.getElementById('name').focus()">
 
-<input type="text" id="name" placeholder="Name">
+<input type="text"
+id="name"
+placeholder="Name"
+onkeydown="if(event.key==='Enter') document.getElementById('password').focus()">
 <br><br>
-
-<input type="text" id="litre" placeholder="Litre">
+<input type="text"
+id="litre"
+placeholder="Litre"
+onkeydown="if(event.key==='Enter') document.getElementById('fat').focus()">
 <br><br>
-
-<input type="text" id="fat" placeholder="Fat">
+<input type="text"
+id="fat"
+placeholder="Fat"
+onkeydown="if(event.key==='Enter') document.getElementById('session').focus()">
 <br><br>
 
 
@@ -37,13 +44,18 @@ onchange="getFarmerName()">
 
 <label>Session</label>
 <select id="session">
-  <option value="morning">Morning</option>
+  
+    <option value="morning">Morning</option>
   <option value="evening">Evening</option>
+  <select id="session"
+onkeydown="if(event.key==='Enter') document.getElementById('degree').focus()">
 </select>
 <br><br>
-<input type="text" id="degree" placeholder="Degree">
+<input type="text"
+id="degree"
+placeholder="Degree"
+onkeydown="if(event.key==='Enter') saveFarmer()">
 <br><br>
-
 <button onclick="saveFarmer()">
 Save
 </button>
