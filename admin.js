@@ -74,7 +74,17 @@ await setDoc(
 
   document.getElementById("msg").innerHTML =
   "Data Saved Successfully";
+  document.getElementById("farmerNo").value = "";
+document.getElementById("name").value = "";
+document.getElementById("litre").value = "";
+document.getElementById("fat").value = "";
+document.getElementById("degree").value = "";
+
+document.getElementById("session").value = "morning";
+
+document.getElementById("farmerNo").focus();
 }
+
 
 async function loadRecord() {
 
