@@ -39,9 +39,11 @@ placeholder="Fat"
 onkeydown="if(event.key==='Enter') document.getElementById('session').focus()">
 <br><br>
 
-
-
-
+<input type="text"
+id="degree"
+placeholder="Degree"
+onkeydown="if(event.key==='Enter') saveFarmer()">
+<br><br>
 <label>Session</label>
 <select id="session">
   
@@ -50,11 +52,6 @@ onkeydown="if(event.key==='Enter') document.getElementById('session').focus()">
   <select id="session"
 onkeydown="if(event.key==='Enter') document.getElementById('degree').focus()">
 </select>
-<br><br>
-<input type="text"
-id="degree"
-placeholder="Degree"
-onkeydown="if(event.key==='Enter') saveFarmer()">
 <br><br>
 <button onclick="saveFarmer()">
 Save
