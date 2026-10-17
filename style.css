@@ -91,3 +91,12 @@ footer{
 #result{
     margin-top:10px;
 }
+
+
+/* Bill option additions; existing website styling remains unchanged. */
+.bill-controls { margin: 18px 0; padding: 16px; border: 1px solid #ccc; border-radius: 10px; background: #fff; }
+.bill-controls h2, .bill-controls h3 { text-align: center; }
+.bill-controls label { display: inline-block; margin: 8px; }
+.bill-table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 14px; }
+.bill-table th, .bill-table td { border: 1px solid #999; padding: 8px; text-align: center; }
+@media print { body * { visibility: hidden; } #billArea, #billArea * { visibility: visible; } #billArea { position: absolute; left: 0; top: 0; width: 100%; } .bill-controls input, .bill-controls button { display: none; } }
