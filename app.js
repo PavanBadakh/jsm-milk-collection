@@ -68,6 +68,12 @@ async function searchFarmer() {
     let farmerNo =
     document.getElementById("farmerNo").value;
 
+    if (!farmerNo) {
+        document.getElementById("result").innerHTML = "Please enter Farmer Number";
+        return;
+    }
+
+    window.currentFarmerNo = farmerNo;
     const farmerRef = doc(db, "farmers", farmerNo);
     const farmerSnap = await getDoc(farmerRef);
 
@@ -80,6 +86,7 @@ async function searchFarmer() {
     const recordsSnap = await getDocs(recordsRef);
 
     const data = farmerSnap.data();
+window.currentFarmerName = data.name || "";
 
 let html = `
 <h2 class="farmer-name">
@@ -95,6 +102,12 @@ recordsSnap.forEach((record) => {
         data: record.data()
     });
 });
+
+// Keep every record for the date-range bill before limiting History to 10 entries.
+window.allFarmerRecords = records.map(record => ({
+    id: record.id,
+    data: record.data
+}));
 
 records.reverse();
 records = records.slice(0, 10);
@@ -155,6 +168,8 @@ html += `
 html += `</div>`;
 
 html += `
+<button type="button" onclick="openBill()">🧾 Bill</button>
+<div id="billArea"></div>
 <h3>📚 History</h3>
 
 
@@ -186,3 +201,33 @@ style="cursor:pointer;font-weight:bold;">
 }
 
 window.searchFarmer = searchFarmer;
+
+window.openBill = function () {
+  const area = document.getElementById("billArea");
+  area.innerHTML = `
+    <section class="bill-controls">
+      <h2>Jay Shree Mataji Milk Collection Bherdapur</h2>
+      <h3>Milk Collection Bill</h3>
+      <p><b>Farmer No:</b> ${window.currentFarmerNo} &nbsp; <b>Name:</b> ${String(window.currentFarmerName || "").toUpperCase()}</p>
+      <label>From Date: <input type="date" id="billFrom"></label>
+      <label>To Date: <input type="date" id="billTo"></label>
+      <button type="button" onclick="showBillRecords()">View Bill</button>
+      <div id="billResults"></div>
+    </section>`;
+};
+
+window.showBillRecords = function () {
+  const from = document.getElementById("billFrom").value;
+  const to = document.getElementById("billTo").value;
+  const out = document.getElementById("billResults");
+  if (!from || !to || from > to) { out.innerHTML = "Please select a valid date range."; return; }
+  const rows = (window.allFarmerRecords || []).map(r => {
+    const split = r.id.split("_");
+    return { date: split[0], session: split[1] || "", data: r.data };
+  }).filter(r => r.date >= from && r.date <= to).sort((a,b) => (a.date + a.session).localeCompare(b.date + b.session));
+  if (!rows.length) { out.innerHTML = "No records found for this date range."; return; }
+  let html = `<table class="bill-table"><thead><tr><th>Date</th><th>Session</th><th>Litre</th><th>Fat</th><th>Degree</th><th>Rate (₹/Litre)</th></tr></thead><tbody>`;
+  for (const r of rows) html += `<tr><td>${r.date}</td><td>${r.session}</td><td>${r.data.litre ?? "—"}</td><td>${r.data.fat ?? "—"}</td><td>${r.data.degree ?? "—"}</td><td>—</td></tr>`;
+  html += `</tbody></table><br><button type="button" onclick="window.print()">🖨️ Print Bill</button>`;
+  out.innerHTML = html;
+};
