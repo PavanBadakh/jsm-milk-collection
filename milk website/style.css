@@ -1,0 +1,102 @@
+body{
+     font-family: 'Poppins', sans-serif;
+    background:#f5f5f5;
+    padding:20px;
+    text-align:center;
+    
+    
+
+}
+
+h1{
+    color:lch(49.68% 45.32 119.65);
+}
+
+input,select{
+    width:280px;
+    padding:12px;
+    margin:8px;
+    border:2px solid #ddd;
+    border-radius:12px;
+    font-size:16px;
+}
+
+button{
+    background:#2563eb;
+    color:white;
+    border:none;
+    padding:12px 25px;
+    border-radius:12px;
+    cursor:pointer;
+    margin:5px;
+    font-size:16px;
+    font-weight:bold;
+}
+
+button:hover{
+    background:#1b5e20;
+}
+
+#result{
+  
+    margin-top:5px;
+
+}
+
+.latest-card{
+    background:white;
+    max-width:420px;
+    margin:20px auto;
+    padding:25px;
+    border-radius:20px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.12);
+    text-align:left;
+    border-top:6px solid #2563eb;
+}
+
+.latest-card h2{
+    text-align:center;
+    color:#2e7d32;
+}
+
+.latest-card h3{
+    color:#2e7d32;
+    margin-top:20px;
+}
+
+.latest-card p{
+    font-size:18px;
+    margin:10px 0;
+}
+
+.card{
+    background:white;
+    max-width:420px;
+    margin:12px auto;
+    padding:15px;
+    border-radius:12px;
+    box-shadow:0 3px 10px rgba(0,0,0,0.08);
+}
+
+
+footer{
+    margin-top:5px;
+    padding:5px;
+    text-align:center;
+    color:#666;
+    font-size:14px;
+    line-height:1.8;
+}
+
+#result{
+    margin-top:10px;
+}
+
+
+/* Bill option additions; existing website styling remains unchanged. */
+.bill-controls { margin: 18px 0; padding: 16px; border: 1px solid #ccc; border-radius: 10px; background: #fff; }
+.bill-controls h2, .bill-controls h3 { text-align: center; }
+.bill-controls label { display: inline-block; margin: 8px; }
+.bill-table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 14px; }
+.bill-table th, .bill-table td { border: 1px solid #999; padding: 8px; text-align: center; }
+@media print { body * { visibility: hidden; } #billArea, #billArea * { visibility: visible; } #billArea { position: absolute; left: 0; top: 0; width: 100%; } .bill-controls input, .bill-controls button { display: none; } }

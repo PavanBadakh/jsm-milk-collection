@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <title>JSM Admin Panel</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<script>
+let pass = prompt("Enter Admin Password");
+if (pass !== "jsm123") {
+  document.body.innerHTML = "<h1>Access Denied</h1>";
+}
+</script>
+
+<h1>JSM Milk Collection - Admin</h1>
+
+<input type="text" id="farmerNo" placeholder="Farmer No"
+  onchange="getFarmerName()"
+  onkeydown="if(event.key==='Enter') document.getElementById('name').focus()">
+
+<input type="text" id="name" placeholder="Name"
+  onkeydown="if(event.key==='Enter') document.getElementById('mobile').focus()">
+<br><br>
+
+<input type="tel" id="mobile" placeholder="Mobile Number (10 digits)"
+  inputmode="numeric" maxlength="13"
+  onkeydown="if(event.key==='Enter') document.getElementById('litre').focus()">
+<br><br>
+
+<input type="text" id="litre" placeholder="Litre"
+  onkeydown="if(event.key==='Enter') document.getElementById('fat').focus()">
+<br><br>
+
+<input type="text" id="fat" placeholder="Fat"
+  onkeydown="if(event.key==='Enter') document.getElementById('degree').focus()">
+<br><br>
+
+<input type="text" id="degree" placeholder="Degree"
+  onkeydown="if(event.key==='Enter') document.getElementById('session').focus()">
+<br><br>
+
+<label for="session">Session</label>
+<select id="session" onkeydown="if(event.key==='Enter') document.getElementById('litre').focus()">
+  <option value="morning">Morning</option>
+  <option value="evening">Evening</option>
+</select>
+<br><br>
+
+<button onclick="saveFarmer()">Save</button>
+<button onclick="saveAndWhatsApp()">Save &amp; WhatsApp</button>
+<button onclick="loadRecord()">Load Record</button>
+<button onclick="deleteRecord()">Delete Record</button>
+<p id="msg"></p>
+
+<script type="module" src="admin.js"></script>
+
+<footer>
+━━━━━━━━━━━━━━━━━━<br><br>
+Developed By<br><br>
+<b>Pavan Badakh</b><br><br>
+© 2026 JSM Milk Collection<br><br>
+Version 1.0<br><br>
+━━━━━━━━━━━━━━━━━━
+</footer>
+</body>
+</html>
